@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+    <style>
+
+        2d{
+            color: red
+        }
+        body{
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <body background = "kentta.jpg">
+
+
+
+        <canvas id="myCanvas" width="800" height="800" style="border:1px solid #000000;"> </canvas> 
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var hero_x = 800;
+            var hero_y = 800;
+            var orc_x = 0;
+            var orc_y = 0;
+            var vasen = 0;
+            var oikea = 0;
+            var ylos = 0;
+            var alas = 0;
+            var vasen2 = 0;
+            var oikea2 = 0;
+            var ylos2 = 0;
+            var alas2 = 0;
+            var heronsade = 19;
+            var orcinsade = 19;
+            var nopeus = 10;
+            var ammuttu = 0;
+            var aika_loopin_lopussa = (new Date()).getTime();
+            var ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1};
+            var mousePos;
+			var orcHP = 100;
+			var heroHP = 50;
+			var kauppa = true;
+
+			function piirrakauppa(){
+			ctx.fillStyle = 'green';
+			ctx.fillRect(400, 300, 150,100);
+			ctx.strokeRect(400, 300, 150,100);
+			
+	
+			
+	
+			
+			
+			}
+			
+			
+			            function getMousePos(canvas, evt) {
+                var rect = canvas.getBoundingClientRect();
+                return {
+                    x: evt.clientX - rect.left,
+                    y: evt.clientY - rect.top
+                };
+            }
+            var canvas = c;
+            var context = ctx;
+
+            canvas.addEventListener('mousemove', function (evt) {
+                mousePos = getMousePos(canvas, evt);
+                // var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+                // writeMessage(canvas, message);
+            }, false);
+            function liikuta() {
+                if (ylos == 1) {
+                    hahmon_y = hahmon_y - nopeus;
+                    if (hahmon_y < 0) {
+                        hahmon_y = 0;
+                    }
+                }
+                if (alas == 1) {
+                    hahmon_y = hahmon_y + nopeus;
+                    if (hahmon_y > 800) {
+                        hahmon_y = 800;
+                    }
+                }
+
+                if (oikea == 1) {
+                    hahmon_x = hahmon_x + nopeus;
+                    if (hahmon_x > 800) {
+                        hahmon_x = 800;
+                    }
+                }
+                if (vasen == 1) {
+                    hahmon_x = hahmon_x - nopeus;
+                    if (hahmon_x < 0) {
+                        hahmon_x = 0;
+                    }
+                }
+                //hahmot
+                if (ylos2 == 1) {
+                    hahmon2_y = hahmon2_y - nopeus;
+                    if (hahmon2_y < 0) {
+                        hahmon2_y = 0;
+                    }
+                }
+                if (alas2 == 1) {
+                    hahmon2_y = hahmon2_y + nopeus;
+                    if (hahmon2_y > 800) {
+                        hahmon2_y = 800;
+                    }
+                }
+
+                if (oikea2 == 1) {
+                    hahmon2_x = hahmon2_x + nopeus;
+                    if (hahmon2_x > 800) {
+                        hahmon2_x = 800;
+                    }
+                }
+                if (vasen2 == 1) {
+                    hahmon2_x = hahmon2_x - nopeus;
+                    if (hahmon2_x < 0) {
+                        hahmon2_x = 0;
+                    }
+                }
+            }
+
+
+
+            function ammuAmmus() {
+                ammus.x = hero_x;
+                ammus.y = hero_y;
+                console.log("lol");
+                if ((mousePos.x - hero_x) > 0) {
+                    console.log("lol1");
+                    ammus.suunta = Math.atan((mousePos.y - hero_y) / (mousePos.x - hero_x));
+                } else {
+                    ammus.suunta = -Math.PI + Math.atan((mousePos.y - hero_y) / (mousePos.x - hero_x));
+                }
+                ammus.ammuttu = true;
+            }
+
+            function liikutaAmmus() {
+                if (ammus.ammuttu) {
+                    ammus.x += Math.cos(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.nopeus;
+                    ammus.y += Math.sin(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.nopeus;
+                }else{
+				 ammus.x = hero_x;
+                ammus.y = hero_y;
+				}
+                if (ammus.x > c.width || ammus.y > c.height) {
+                    ammus.ammuttu = false;
+                    ammus.x = hero_x;
+                    ammus.y = hero_y;
+                }
+            }
+
+
+            var heroImage = new Image();
+            var heroImageReady = false;
+            heroImage.onload = function () {
+                heroImageReady = true;
+            };
+            var orcImage = new Image();
+            var orcImageReady = false;
+            orcImage.onload = function () {
+                orcImageReady = true;
+            };
+            var nuoliImage = new Image();
+            var nuoliImageReady = false;
+            nuoliImage.onload = function () {
+                nuoliImageReady = true;
+            };
+
+            alusta();
+
+
+            function piirraAmmus(x, y) {
+                ctx.beginPath();
+                ctx.arc(x, y, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = 'gold';
+                ctx.fill();
+                ctx.stroke();
+                //nuoli_x = nuoli_x+1;
+                //if(nuoli_x>c.width){
+                //ammuttu = 0;
+
+
+
+
+
+            }
+
+
+            function hero() {
+                //hero.png
+                if (heroImageReady) {
+                    ctx.drawImage(heroImage, hero_x, hero_y);
+
+                }
+
+
+            }
+
+            function orc() {
+                //orc.png
+                if (orcImageReady) {
+                    ctx.drawImage(orcImage, orc_x, orc_y);
+                }
+
+            }
+
+
+            function alusta() {
+                // Create new img element
+                heroImage.src = 'hero.png'; // Set source path12
+                orcImage.src = 'orc.png'; // Set source path12
+               // nuoliImage.src = 'nuoli.png'; // Set source path12
+
+            }
+
+
+            function piirra() {
+                ctx.clearRect(0, 0, c.width, c.height);
+                hero();
+                orc();
+               piirraAmmus(ammus.x, ammus.y);
+			   piirraHPt();
+            }
+
+            function liikuta() {
+                if (ylos == 1) {
+                    hero_y = hero_y - nopeus;
+                    if (hero_y < 0) {
+                        hero_y = 0;
+                    }
+                }
+                if (alas == 1) {
+                    hero_y = hero_y + nopeus;
+                    if (hero_y > 800) {
+                        hero_y = 800;
+                    }
+                }
+
+                if (oikea == 1) {
+                    hero_x = hero_x + nopeus;
+                    if (hero_x > 800) {
+                        hero_x = 800;
+                    }
+                }
+                if (vasen == 1) {
+                    hero_x = hero_x - nopeus;
+                    if (hero_x < 0) {
+                        hero_x = 0;
+                    }
+                }
+                //hahmot
+                if (ylos2 == 1) {
+                    orc_y = orc_y - nopeus;
+                    if (orc_y < 0) {
+                        orc_y = 0;
+                    }
+                }
+                if (alas2 == 1) {
+                    orc_y = orc_y + nopeus;
+                    if (orc_y > 800) {
+                        orc_y = 800;
+                    }
+                }
+
+                if (oikea2 == 1) {
+                    orc_x = orc_x + nopeus;
+                    if (orc_x > 800) {
+                        orc_x = 800;
+                    }
+                }
+                if (vasen2 == 1) {
+                    orc_x = orc_x - nopeus;
+                    if (orc_x < 0) {
+                        orc_x = 0;
+                    }
+                }
+            }
+
+
+            setInterval(mainLoop, 1000 / 60);
+
+
+
+            document.addEventListener("keydown", painettuNappainAlas, true);
+            document.addEventListener("keyup", painettuNappainYlos, true);
+            c.addEventListener("click", painettuNappainClick, false);
+
+			function piirraHPt(){
+			 ctx.font = '18pt Calibri';
+                ctx.fillStyle = 'black';
+			ctx.fillText("Orkkimoykky: "+orcHP, 100, 20);
+			ctx.fillText("Herojorma: "+heroHP, 600, 20);
+			
+			
+			
+			
+			}
+
+            var TO_RADIANS = Math.PI / 180;
+            function drawRotatedImage(image, x, y, angle) {
+
+                // save the current co-ordinate system 
+                // before we screw with it
+                ctx.save();
+
+                // move to the middle of where we want to draw our image
+                ctx.translate(x, y);
+
+                // rotate around that point, converting our 
+                // angle from degrees to radians 
+                ctx.rotate(angle * TO_RADIANS);
+
+                // draw it up and to the left by half the width
+                // and height of the image 
+                ctx.drawImage(image, -(image.width / 2), -(image.height / 2));
+
+                // and restore the co-ords to how they were when we began
+                ctx.restore();
+            }
+
+
+			
+			function kritti(todennakoisyys){
+			
+			if(Math.random()*100<todennakoisyys){
+			return true;
+			}
+			else{ return false;}
+			
+			}
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+            function painettuNappainClick(e) {
+                console.log("Click: ");
+                if(kauppa==false){
+				ammuAmmus();
+			}
+			if(kauppa==true){
+			
+			//eka buttoni
+			if(mousePos.x>400&&mousePos.x<550&&mousePos.y>300&&mousePos.y<400){
+			//tapahtuu jotain
+			kauppa = false;
+			console.log("moi");
+			}
+			
+			
+			}
+            }
+
+
+            function painettuNappainAlas(e) {
+                console.log("Alas: " + e.keyCode);
+                /*if(e.keyCode==32){
+                 kuolemattomuus=1;
+                 if(kPaalla==0){
+                 kPaalla=(new Date()).getTime();
+                 }
+                 }*/
+                if (e.keyCode == 32) {
+                    console.log("Ammuttu");
+                    ammuttu = 1;
+
+                }
+                if (e.keyCode == 38) {
+                    ylos = 1;
+                }
+                if (e.keyCode == 40) {
+                    alas = 1;
+                }
+
+                if (e.keyCode == 39) {
+                    oikea = 1;
+                }
+                if (e.keyCode == 37) {
+                    vasen = 1;
+                }
+                //hahmot
+                if (e.keyCode == 87) {
+                    ylos2 = 1;
+                }
+                if (e.keyCode == 83) {
+                    alas2 = 1;
+                }
+
+                if (e.keyCode == 68) {
+                    oikea2 = 1;
+                }
+                if (e.keyCode == 65) {
+                    vasen2 = 1;
+                }
+            }
+            //YLÖS
+            function painettuNappainYlos(e) {
+                console.log("Ylös: " + e.keyCode);
+                //if(e.keyCode==32){
+                //kuolemattomuus=0;
+                //aikaaJaljella = aikaaJaljella -((new Date()).getTime()-kPaalla);
+                //kPaalla=0;
+                //}
+
+                if (e.keyCode == 38) {
+                    ylos = 0;
+                }
+                if (e.keyCode == 40) {
+                    alas = 0;
+                }
+
+                if (e.keyCode == 39) {
+                    oikea = 0;
+                }
+                if (e.keyCode == 37) {
+                    vasen = 0;
+                }
+                //hahmot
+                if (e.keyCode == 87) {
+                    ylos2 = 0;
+                }
+                if (e.keyCode == 83) {
+                    alas2 = 0;
+                }
+
+                if (e.keyCode == 68) {
+                    oikea2 = 0;
+                }
+                if (e.keyCode == 65) {
+                    vasen2 = 0;
+                }
+            }
+
+
+            function liikutaAmmusta() {
+                if (ammuttu == 1) {
+                    ammus.x++;
+                } else {
+                    ammus.x = hero_x;
+                    ammus.y = hero_y
+                }
+
+
+            }
+
+
+            function tarkistaOsuma() {
+                var thx = hero_x + 20;
+                var thy = hero_y + 20;
+                var tox = orc_x + 25;
+                var toy = orc_y + 22;
+                if (orcinsade + heronsade > Math.sqrt((thx - tox) * (thx - tox) + (thy - toy) * (thy - toy))) {
+                    console.log("osuma");
+					heroHP--;
+					console.log(heroHP);
+                    
+                    //window.alert("2");
+                    //resetoi();
+                }
+                var tax = ammus.x;
+				var tay = ammus.y;
+				if (ammus.ammuttu){
+				
+				
+				
+				
+				if (orcinsade + 10 > Math.sqrt((tax - tox) * (tax - tox) + (tay - toy) * (tay - toy))) {
+                    console.log("osuma");
+					ammus.ammuttu = false;
+					orcHP=orcHP-6
+					if(kritti(30)){
+					orcHP=orcHP-14;
+					}else{} 
+					console.log(orcHP);
+                   
+                    //window.alert("2");
+                    //resetoi();
+                }
+
+}
+
+
+
+            }
+			function hpJuttu() {
+			if (heroHP<=0){
+			ctx.font = "30px Arial";
+                    ctx.fillText("Orc RECTAA!!! Uudelleen!", 200, 500);
+					 window.alert("2");
+                    resetoi();}
+			if (orcHP<=0){
+			 ctx.font = "30px Arial";
+                    ctx.fillText("Orc UNRECTAA!!! Uudelleen!", 200, 500);
+			 window.alert("2");
+                    resetoi();}
+			}
+
+
+            function mainLoop() {
+                if(kauppa==false){
+				hero();
+                orc();
+                liikuta();
+                piirra();
+                tarkistaOsuma();
+                liikutaAmmus();
+				aika_loopin_lopussa = (new Date()).getTime();
+				hpJuttu();
+				}
+				if(kauppa==true){
+				piirrakauppa();
+				
+				
+				}
+            }
+
+
+
+
+            function resetoi() {
+                hero_x = 800;
+                hero_y = 800;
+                orc_x = 0;
+                orc_y = 0;
+                liikuta;
+                piirra;
+                vasen = 0;
+                oikea = 0;
+                ylos = 0;
+                alas = 0;
+                vasen2 = 0;
+                oikea2 = 0;
+                ylos2 = 0;
+                alas2 = 0;
+                ammuttu = 0;
+                ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1};
+				heroHP = 50;
+				orcHP = 100;
+				
+            }
+
+            //kommentti
+            function writeMessage(canvas, message) {
+                var context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.font = '18pt Calibri';
+                context.fillStyle = 'black';
+                context.fillText(message, 10, 25);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+
+    </body>
+</html>
