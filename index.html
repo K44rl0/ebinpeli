@@ -46,8 +46,6 @@ and open the template in the editor.
 			var orcHP = 100;
 			var heroHP = 50;
 			var kauppa = true;
-			var krit = false;
-
 
 			function piirrakauppa(){
 			ctx.fillStyle = 'green';
@@ -238,9 +236,6 @@ and open the template in the editor.
                 orc();
                piirraAmmus(ammus.x, ammus.y);
 			   piirraHPt();
-			   if (krit == true){
-				ctx.fillText ("CRIT",orc_x,orc_y);
-			   }
             }
 
             function liikuta() {
@@ -398,7 +393,7 @@ and open the template in the editor.
 			kauppa = false;
 			console.log("moi2");
 			
-			500, 100, 150,100
+			//500, 100, 150,100
 			
 			}
 			//kolmas buttoni(musta)
@@ -408,14 +403,13 @@ and open the template in the editor.
 			console.log("moi3");
 			
 			
-			600, 300, 150,100
+			//600, 300, 150,100
 			
 			
             }
-
+			}
 			
-			
-			
+			}
 			
 			
 			
@@ -556,10 +550,8 @@ and open the template in the editor.
 					ammus.ammuttu = false;
 					orcHP=orcHP-6;
 					if(kritti(30)){
-					console.log("osuma_krit")
-					krit = true;
 					orcHP=orcHP-14;
-					}else{krit = false;} 
+					}else{} 
 					console.log(orcHP);
                    
                     //window.alert("2");
