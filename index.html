@@ -46,7 +46,8 @@ and open the template in the editor.
 			var orcHP = 100;
 			var heroHP = 50;
 			var kauppa = true;
-
+			var krit = true
+			
 			function piirrakauppa(){
 			ctx.fillStyle = 'green';
 			ctx.fillRect(400, 300, 150,100);
@@ -236,8 +237,10 @@ and open the template in the editor.
                 orc();
                piirraAmmus(ammus.x, ammus.y);
 			   piirraHPt();
-            }
-
+          if (krit == true){
+				ctx.fillText ("CRIT",orc_x,orc_y);
+			   }
+}
             function liikuta() {
                 if (ylos == 1) {
                     hero_y = hero_y - nopeus;
@@ -346,29 +349,7 @@ and open the template in the editor.
 			}
 		
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+		
 			
 			
 			
@@ -414,16 +395,7 @@ and open the template in the editor.
 			
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			
 			
 			
@@ -550,8 +522,11 @@ and open the template in the editor.
 					ammus.ammuttu = false;
 					orcHP=orcHP-6;
 					if(kritti(30)){
+					console.log("osuma_krit")
+					krit = true;
 					orcHP=orcHP-14;
-					}else{} 
+					
+					}else{krit = false} 
 					console.log(orcHP);
                    
                     //window.alert("2");
