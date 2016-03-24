@@ -48,8 +48,13 @@ and open the template in the editor.
 			var heroHP = 50;
 			var kauppa = true;
 			var krit = false;
+			var valintoja = 0;
+			var heroDMG = 6;
+			var armor = 1;
+
 			var ansa = {x: 400, y: 400};
 			
+
 			
 			function piirrakauppa(){
 			ctx.fillStyle = 'green';
@@ -440,15 +445,18 @@ and open the template in the editor.
 			//eka buttoni(vihreä)
 			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>100&&mousePos.y<200){
 			//tapahtuu jotain
-			kauppa = false;
+			//kauppa = false;
 			orcHP = 150;
 			console.log("moi");
+			valintoja++;
 			}
 			//toka buttoni(oranssi)
 			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>350&&mousePos.y<450){
 			//tapahtuu jotain
-			kauppa = false;
+			//kauppa = false;
+			armor = 0.5;
 			console.log("moi2");
+			valintoja++;
 			
 			//500, 100, 150,100
 			
@@ -456,9 +464,10 @@ and open the template in the editor.
 			//kolmas buttoni(musta)
 			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>700&&mousePos.y<800){
 			//tapahtuu jotain
-			kauppa = false;
+			//kauppa = false;
 			orcNopeus = 15;
 			console.log("moi3");
+			valintoja++;
 			
 			
 			//600, 300, 150,100
@@ -471,14 +480,17 @@ and open the template in the editor.
 			//neljäs buttoni(vihreä)
 			if(mousePos.x>600&&mousePos.x<750&&mousePos.y>100&&mousePos.y<200){
 			//tapahtuu jotain
-			kauppa = false;
+			//kauppa = false;
 			console.log("moi4");
+			valintoja++;
 			}
 			//viides buttoni(oranssi)
 			if(mousePos.x>600&&mousePos.x<750&&mousePos.y>350&&mousePos.y<450){
 			//tapahtuu jotain
-			kauppa = false;
+			//kauppa = false;
+			heroDMG = 9;
 			console.log("moi5");
+			valintoja++;
 			
 			//500, 100, 150,100
 			
@@ -486,7 +498,8 @@ and open the template in the editor.
 			//kuudes buttoni(musta)
 			if(mousePos.x>650&&mousePos.x<750&&mousePos.y>700&&mousePos.y<800){
 			//tapahtuu jotain
-			kauppa = false;
+			//kauppa = false;
+			valintoja++;
 			console.log("moi6");
 			
 			
@@ -495,6 +508,13 @@ and open the template in the editor.
 			
             }
 			}
+			if(valintoja==2){
+			kauppa = false;
+			
+			}
+			
+			
+			
 			}
 			
 			
@@ -650,11 +670,11 @@ and open the template in the editor.
 				if (orcinsade + 10 > Math.sqrt((tax - tox) * (tax - tox) + (tay - toy) * (tay - toy))) {
                     console.log("osuma");
 					ammus.ammuttu = false;
-					orcHP=orcHP-6;
+					orcHP=orcHP-heroDMG*armor;
 					if(kritti(30)){
 					console.log("osuma_krit")
 					krit = true;
-					orcHP=orcHP-14;
+					orcHP=orcHP-14*armor;
 					
 					}else{krit = false} 
 					console.log(orcHP);
