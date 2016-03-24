@@ -42,7 +42,7 @@ and open the template in the editor.
 			var orcNopeus = 10;
             var ammuttu = 0;
             var aika_loopin_lopussa = (new Date()).getTime();
-            var ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,Heronopeus:1};
+            var ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1};
             var mousePos;
 			var orcHP = 100;
 			var heroHP = 50;
@@ -187,8 +187,8 @@ and open the template in the editor.
 
             function liikutaAmmus() {
                 if (ammus.ammuttu) {
-                    ammus.x += Math.cos(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.heroNopeus;
-                    ammus.y += Math.sin(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.heroNopeus;
+                    ammus.x += Math.cos(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.nopeus;
+                    ammus.y += Math.sin(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.nopeus;
                 }else{
 				ammus.x = hero_x;
                 ammus.y = hero_y;
