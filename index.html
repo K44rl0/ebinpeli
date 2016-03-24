@@ -38,10 +38,11 @@ and open the template in the editor.
             var alas2 = 0;
             var heronsade = 19;
             var orcinsade = 19;
-            var nopeus = 10;
+            var heroNopeus = 10;
+			var orcNopeus = 10;
             var ammuttu = 0;
             var aika_loopin_lopussa = (new Date()).getTime();
-            var ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1};
+            var ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,Heronopeus:1};
             var mousePos;
 			var orcHP = 100;
 			var heroHP = 50;
@@ -54,37 +55,37 @@ and open the template in the editor.
 			ctx.strokeRect(100, 100, 150,100);
 			ctx.font = "25px Arial";
 			ctx.fillStyle = 'red';
-            ctx.fillText("Orchp", 120, 150);
+            ctx.fillText("Orc hp", 120, 150);
 			ctx.fillStyle = 'orange';
 			ctx.fillRect(100, 350, 150,100);
 			ctx.strokeRect(100, 350, 150,100);
 			ctx.font = "25px Arial";
 			ctx.fillStyle = 'green';
-            ctx.fillText("Orcarmor", 120, 400);
+            ctx.fillText("Orc armor", 120, 400);
 			ctx.fillStyle = 'black';
 			ctx.fillRect(100, 700, 150,100);
 			ctx.strokeRect(100, 700, 150,100);
 			ctx.font = "25px Arial";
 			ctx.fillStyle = 'red';
-            ctx.fillText("Orcms", 120, 750);
+            ctx.fillText("Orc ms", 120, 750);
 			ctx.fillStyle = 'green';
 			ctx.fillRect(600, 100, 150,100);
 			ctx.strokeRect(600, 100, 150,100);
 			ctx.font = "25px Arial";
 			ctx.fillStyle = 'red';
-            ctx.fillText("Herocc", 625, 150);
+            ctx.fillText("Hero cc", 625, 150);
 			ctx.fillStyle = 'orange';
 			ctx.fillRect(600, 350, 150,100);
 			ctx.strokeRect(600, 350, 150,100);
 			ctx.font = "25px Arial";
 			ctx.fillStyle = 'green';
-            ctx.fillText("Herodmg", 625, 400);
+            ctx.fillText("Hero dmg", 625, 400);
 			ctx.fillStyle = 'black';
 			ctx.fillRect(600, 700, 150,100);
 			ctx.strokeRect(600, 700, 150,100);
-			ctx.font = "25px Arial";
+			ctx.font = "20px Arial";
 			ctx.fillStyle = 'red';
-            ctx.fillText("Heroammo", 625, 750);
+            ctx.fillText("Hero ammo", 625, 750);
 			
 	
 	
@@ -110,52 +111,52 @@ and open the template in the editor.
             }, false);
             function liikuta() {
                 if (ylos == 1) {
-                    hahmon_y = hahmon_y - nopeus;
+                    hahmon_y = hahmon_y - heroNopeus;
                     if (hahmon_y < 0) {
                         hahmon_y = 0;
                     }
                 }
                 if (alas == 1) {
-                    hahmon_y = hahmon_y + nopeus;
+                    hahmon_y = hahmon_y + heroNopeus;
                     if (hahmon_y > 800) {
                         hahmon_y = 800;
                     }
                 }
 
                 if (oikea == 1) {
-                    hahmon_x = hahmon_x + nopeus;
+                    hahmon_x = hahmon_x + heroNopeus;
                     if (hahmon_x > 800) {
                         hahmon_x = 800;
                     }
                 }
                 if (vasen == 1) {
-                    hahmon_x = hahmon_x - nopeus;
+                    hahmon_x = hahmon_x - heroNopeus;
                     if (hahmon_x < 0) {
                         hahmon_x = 0;
                     }
                 }
                 //hahmot
                 if (ylos2 == 1) {
-                    hahmon2_y = hahmon2_y - nopeus;
+                    hahmon2_y = hahmon2_y - orcNopeus;
                     if (hahmon2_y < 0) {
                         hahmon2_y = 0;
                     }
                 }
                 if (alas2 == 1) {
-                    hahmon2_y = hahmon2_y + nopeus;
+                    hahmon2_y = hahmon2_y + orcNopeus;
                     if (hahmon2_y > 800) {
                         hahmon2_y = 800;
                     }
                 }
 
                 if (oikea2 == 1) {
-                    hahmon2_x = hahmon2_x + nopeus;
+                    hahmon2_x = hahmon2_x + orcNopeus;
                     if (hahmon2_x > 800) {
                         hahmon2_x = 800;
                     }
                 }
                 if (vasen2 == 1) {
-                    hahmon2_x = hahmon2_x - nopeus;
+                    hahmon2_x = hahmon2_x - orcNopeus;
                     if (hahmon2_x < 0) {
                         hahmon2_x = 0;
                     }
@@ -179,10 +180,10 @@ and open the template in the editor.
 
             function liikutaAmmus() {
                 if (ammus.ammuttu) {
-                    ammus.x += Math.cos(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.nopeus;
-                    ammus.y += Math.sin(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.nopeus;
+                    ammus.x += Math.cos(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.heroNopeus;
+                    ammus.y += Math.sin(ammus.suunta) * ((new Date()).getTime() - aika_loopin_lopussa) * ammus.heroNopeus;
                 }else{
-				 ammus.x = hero_x;
+				ammus.x = hero_x;
                 ammus.y = hero_y;
 				}
                 if (ammus.x > c.width || ammus.y > c.height) {
@@ -269,52 +270,52 @@ and open the template in the editor.
 }
             function liikuta() {
                 if (ylos == 1) {
-                    hero_y = hero_y - nopeus;
+                    hero_y = hero_y - heroNopeus;
                     if (hero_y < 0) {
                         hero_y = 0;
                     }
                 }
                 if (alas == 1) {
-                    hero_y = hero_y + nopeus;
+                    hero_y = hero_y + heroNopeus;
                     if (hero_y > 800) {
                         hero_y = 800;
                     }
                 }
 
                 if (oikea == 1) {
-                    hero_x = hero_x + nopeus;
+                    hero_x = hero_x + heroNopeus;
                     if (hero_x > 800) {
                         hero_x = 800;
                     }
                 }
                 if (vasen == 1) {
-                    hero_x = hero_x - nopeus;
+                    hero_x = hero_x - heroNopeus;
                     if (hero_x < 0) {
                         hero_x = 0;
                     }
                 }
                 //hahmot
                 if (ylos2 == 1) {
-                    orc_y = orc_y - nopeus;
+                    orc_y = orc_y - orcNopeus;
                     if (orc_y < 0) {
                         orc_y = 0;
                     }
                 }
                 if (alas2 == 1) {
-                    orc_y = orc_y + nopeus;
+                    orc_y = orc_y + orcNopeus;
                     if (orc_y > 800) {
                         orc_y = 800;
                     }
                 }
 
                 if (oikea2 == 1) {
-                    orc_x = orc_x + nopeus;
+                    orc_x = orc_x + orcNopeus;
                     if (orc_x > 800) {
                         orc_x = 800;
                     }
                 }
                 if (vasen2 == 1) {
-                    orc_x = orc_x - nopeus;
+                    orc_x = orc_x - orcNopeus;
                     if (orc_x < 0) {
                         orc_x = 0;
                     }
@@ -420,6 +421,7 @@ and open the template in the editor.
 			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>100&&mousePos.y<200){
 			//tapahtuu jotain
 			kauppa = false;
+			orcHP = 150;
 			console.log("moi");
 			}
 			//toka buttoni(oranssi)
@@ -435,6 +437,7 @@ and open the template in the editor.
 			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>700&&mousePos.y<800){
 			//tapahtuu jotain
 			kauppa = false;
+			orcNopeus = 15;
 			console.log("moi3");
 			
 			
@@ -696,7 +699,7 @@ and open the template in the editor.
                 ylos2 = 0;
                 alas2 = 0;
                 ammuttu = 0;
-                ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1};
+                ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,heroNopeus:1};
 				heroHP = 50;
 				orcHP = 100;
 				krit = false
