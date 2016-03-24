@@ -46,9 +46,7 @@ and open the template in the editor.
 			var orcHP = 100;
 			var heroHP = 50;
 			var kauppa = true;
-			var krit = false;
-			var ansa = {x: 400, y: 400};
-			
+			var krit = false
 			
 			function piirrakauppa(){
 			ctx.fillStyle = 'green';
@@ -193,6 +191,7 @@ and open the template in the editor.
                 }
             }
 
+
             var heroImage = new Image();
             var heroImageReady = false;
             heroImage.onload = function () {
@@ -210,28 +209,7 @@ and open the template in the editor.
             };
 
             alusta();
-			function PiirraAnsa()
-			{
-			     ctx.beginPath();
-                ctx.arc(ansa.x,ansa.y, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = 'black';
-                ctx.fill();
-                ctx.stroke();
-			
-			
-			
-			
-			
-			}
-			   setInterval(AnsanPaikka, 5000);
-			function AnsanPaikka()
-			{
-			PiirraAnsa
-			
-			
-			}
-			
-			
+
 
             function piirraAmmus(x, y) {
                 ctx.beginPath();
@@ -242,6 +220,8 @@ and open the template in the editor.
                 //nuoli_x = nuoli_x+1;
                 //if(nuoli_x>c.width){
                 //ammuttu = 0;
+
+
 
 
 
