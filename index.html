@@ -51,6 +51,7 @@ and open the template in the editor.
 			var valintoja = 0;
 			var heroDMG = 6;
 			var armor = 1;
+
 			var ansat = [];
 			var ansa = {x: 300, y: 300};
 			
@@ -85,8 +86,16 @@ and open the template in the editor.
 			ansat.push(ansa);
 			ansa = {x: 300, y: 300};
 			ansat.push(ansa);			
+
+			var orcUpgradeja = 1;
+			var heroUpgradeja = 1;
+			var ansa = {x: 400, y: 400};
+			var peli = 0;
+
+
 			
 			function piirrakauppa(){
+			ctx.clearRect(0, 0, c.width, c.height);
 			ctx.fillStyle = 'green';
 			ctx.fillRect(100, 100, 150,100);
 			ctx.strokeRect(100, 100, 150,100);
@@ -123,8 +132,12 @@ and open the template in the editor.
 			ctx.font = "20px Arial";
 			ctx.fillStyle = 'red';
             ctx.fillText("Hero ammo", 625, 750);
-			
-	
+			piirraUpgradet();
+			ctx.fillRect(365, 350, 150,100);
+			ctx.strokeRect(365, 350, 150,100);
+			ctx.font = "30px Arial";
+			ctx.fillStyle = 'green';
+            ctx.fillText("Aloita peli", 380,420 );
 	
 			
 			
@@ -459,7 +472,18 @@ and open the template in the editor.
 			
 			
 			
+			function piirraUpgradet(){
+			ctx.font = '20px Arial';
+            ctx.fillStyle = 'red';
+			ctx.fillText("Orkkimoykyn upit: "+orcUpgradeja, 100, 630);
+			ctx.fillText("Herojorman upit: "+heroUpgradeja, 600, 630);
 			
+			
+			
+			
+			
+			
+			}
 			
 			
 			
@@ -483,7 +507,8 @@ and open the template in the editor.
 			if(kauppa==true){
 			
 			//eka buttoni(vihreä)
-			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>100&&mousePos.y<200){
+			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>100&&mousePos.y<200&&orcUpgradeja>0){
+			orcUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
 			orcHP = 150;
@@ -491,7 +516,8 @@ and open the template in the editor.
 			valintoja++;
 			}
 			//toka buttoni(oranssi)
-			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>350&&mousePos.y<450){
+			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>350&&mousePos.y<450&&orcUpgradeja>0){
+			orcUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
 			armor = 0.5;
@@ -502,7 +528,8 @@ and open the template in the editor.
 			
 			}
 			//kolmas buttoni(musta)
-			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>700&&mousePos.y<800){
+			if(mousePos.x>100&&mousePos.x<250&&mousePos.y>700&&mousePos.y<800&&orcUpgradeja>0){
+			orcUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
 			orcNopeus = 15;
@@ -518,14 +545,17 @@ and open the template in the editor.
 			if(kauppa==true){
 			
 			//neljäs buttoni(vihreä)
-			if(mousePos.x>600&&mousePos.x<750&&mousePos.y>100&&mousePos.y<200){
+			if(mousePos.x>600&&mousePos.x<750&&mousePos.y>100&&mousePos.y<200&&heroUpgradeja>0){
+			heroUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
+			
 			console.log("moi4");
 			valintoja++;
 			}
 			//viides buttoni(oranssi)
-			if(mousePos.x>600&&mousePos.x<750&&mousePos.y>350&&mousePos.y<450){
+			if(mousePos.x>600&&mousePos.x<750&&mousePos.y>350&&mousePos.y<450&&heroUpgradeja>0){
+			heroUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
 			heroDMG = 9;
@@ -536,7 +566,8 @@ and open the template in the editor.
 			
 			}
 			//kuudes buttoni(musta)
-			if(mousePos.x>650&&mousePos.x<750&&mousePos.y>700&&mousePos.y<800){
+			if(mousePos.x>650&&mousePos.x<750&&mousePos.y>700&&mousePos.y<800&&heroUpgradeja>0){
+			heroUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
 			valintoja++;
@@ -547,12 +578,15 @@ and open the template in the editor.
 			
 			
             }
+			if(mousePos.x>365&&mousePos.x<515&&mousePos.y>350&&mousePos.y<450){
+			
+			//PELI ALKAA
+			console.log("PELI ALKOI");
+			//if anko tarpeeksi valintoja
+			kauppa = false;			
 			}
-			if(valintoja==2){
-			kauppa = false;
 			
 			}
-			
 			
 			
 			}
