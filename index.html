@@ -54,7 +54,7 @@ and open the template in the editor.
 			var orcUpgradeja = 1;
 			var heroUpgradeja = 1;
 			var ansa = {x: 400, y: 400};
-			
+			var peli = 0;
 
 			
 			function piirrakauppa(){
@@ -96,7 +96,11 @@ and open the template in the editor.
 			ctx.fillStyle = 'red';
             ctx.fillText("Hero ammo", 625, 750);
 			piirraUpgradet();
-	
+			ctx.fillRect(365, 350, 150,100);
+			ctx.strokeRect(365, 350, 150,100);
+			ctx.font = "30px Arial";
+			ctx.fillStyle = 'green';
+            ctx.fillText("Aloita peli", 380,420 );
 	
 			
 			
@@ -500,6 +504,7 @@ and open the template in the editor.
 			heroUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
+			
 			console.log("moi4");
 			valintoja++;
 			}
@@ -528,12 +533,15 @@ and open the template in the editor.
 			
 			
             }
+			if(mousePos.x>365&&mousePos.x<515&&mousePos.y>350&&mousePos.y<450){
+			
+			//PELI ALKAA
+			console.log("PELI ALKOI");
+			//if anko tarpeeksi valintoja
+			kauppa = false;			
 			}
-			if(valintoja==2){
-			kauppa = false;
 			
 			}
-			
 			
 			
 			}
