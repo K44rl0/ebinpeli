@@ -222,7 +222,7 @@ and open the template in the editor.
 			function PiirraAnsa()
 			{
 			     ctx.beginPath();
-                ctx.arc(ansa.x,ansa.y, 10, 0, 2 * Math.PI);
+                ctx.arc(ansa.x,ansa.y, 20, 0, 2 * Math.PI);
                 ctx.fillStyle = 'black';
                 ctx.fill();
                 ctx.stroke();
@@ -235,7 +235,8 @@ and open the template in the editor.
 			   setInterval(AnsanPaikka, 5000);
 			function AnsanPaikka()
 			{
-			PiirraAnsa();
+			ansa.x =Math.random()*800;
+			ansa.y =Math.random()*800;
 			
 			
 			}
@@ -294,6 +295,7 @@ and open the template in the editor.
           if (krit == true){
 				ctx.fillText ("CRIT",orc_x,orc_y);
 			   }
+			   PiirraAnsa();
 }
             function liikuta() {
                 if (ylos == 1) {
@@ -535,41 +537,11 @@ and open the template in the editor.
 			
 			
 			}
-			
-			
-			
-			
 
 			
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			
 			
 			
@@ -702,7 +674,16 @@ and open the template in the editor.
                     //resetoi();
                 }
 
-}
+}				
+                var vax = ansa.x;
+				var vay = ansa.y;
+				
+				if (orcinsade + 20 > Math.sqrt((vax - tox) * (vax - tox) + (vay - toy) * (vay - toy))) {
+				orcHP=orcHP-100*armor;
+                    console.log("snorf");}
+				if (orcinsade + 20 > Math.sqrt((vax - thx) * (vax - thx) + (vay - thy) * (vay - thy))) {
+				heroHP=heroHP-50;
+                    console.log("snorf");}
 
 
 
