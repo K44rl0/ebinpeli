@@ -51,10 +51,47 @@ and open the template in the editor.
 			var valintoja = 0;
 			var heroDMG = 6;
 			var armor = 1;
+
 			var orcUpgradeja = 1;
 			var heroUpgradeja = 1;
 			var ansa = {x: 400, y: 400};
 			var peli = 0;
+
+
+			var ansat = [];
+			var ansa = {x: 300, y: 300};
+			
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);		
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);
+			ansa = {x: 300, y: 300};
+			ansat.push(ansa);			
 
 			
 			function piirrakauppa(){
@@ -223,10 +260,10 @@ and open the template in the editor.
             };
 
             alusta();
-			function PiirraAnsa()
+			function PiirraAnsa(x,y)
 			{
 			     ctx.beginPath();
-                ctx.arc(ansa.x,ansa.y, 20, 0, 2 * Math.PI);
+                ctx.arc(x,y, 20, 0, 2 * Math.PI);
                 ctx.fillStyle = 'black';
                 ctx.fill();
                 ctx.stroke();
@@ -239,8 +276,12 @@ and open the template in the editor.
 			   setInterval(AnsanPaikka, 5000);
 			function AnsanPaikka()
 			{
-			ansa.x =Math.random()*800;
-			ansa.y =Math.random()*800;
+			for(var i=0;i<ansat.length;i++){
+			ansat[i].x =Math.random()*800;
+			ansat[i].y =Math.random()*800;
+			   
+			   }
+
 			
 			
 			}
@@ -299,7 +340,11 @@ and open the template in the editor.
           if (krit == true){
 				ctx.fillText ("CRIT",orc_x,orc_y);
 			   }
-			   PiirraAnsa();
+			   for(var i=0;i<ansat.length;i++){
+			   PiirraAnsa(ansat[i].x,ansat[i].y);
+			   }
+			   
+			   
 }
             function liikuta() {
                 if (ylos == 1) {
@@ -683,8 +728,11 @@ and open the template in the editor.
                 }
 
 }				
-                var vax = ansa.x;
-				var vay = ansa.y;
+               
+for(var i=0;i<ansat.length;i++){
+			   
+			   var vax = ansat[i].x;
+				var vay = ansat[i].y;
 				
 				if (orcinsade + 20 > Math.sqrt((vax - tox) * (vax - tox) + (vay - toy) * (vay - toy))) {
 				orcHP=orcHP-100*armor;
@@ -692,7 +740,7 @@ and open the template in the editor.
 				if (orcinsade + 20 > Math.sqrt((vax - thx) * (vax - thx) + (vay - thy) * (vay - thy))) {
 				heroHP=heroHP-50;
                     console.log("snorf");}
-
+}
 
 
             }
