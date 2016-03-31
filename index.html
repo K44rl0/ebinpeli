@@ -59,10 +59,15 @@ and open the template in the editor.
 			var HeroAbility
 			var OrcAbility
 
+
 			var ansat = [];
 			var ansa = {x: 300, y: 300};
 			
+<<<<<<< HEAD
 			
+=======
+		
+>>>>>>> origin/Menu
 			ansat.push(ansa);
 			ansa = {x: 300, y: 300};
 			ansat.push(ansa);
@@ -80,6 +85,14 @@ and open the template in the editor.
 			ansat.push(ansa);
 			ansa = {x: 300, y: 300};
 			ansat.push(ansa);			
+
+
+			var orcUpgradeja = 1;
+			var heroUpgradeja = 1;
+			var ansa = {x: 400, y: 400};
+			var peli = 0;
+
+
 
 			
 			function piirrakauppa(){
@@ -785,10 +798,13 @@ for(var i=0;i<ansat.length;i++){
                 ylos2 = 0;
                 alas2 = 0;
                 ammuttu = 0;
-                ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,heroNopeus:1};
+                ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1, vari: "gold"};
 				heroHP = 50;
 				orcHP = 100;
 				krit = false
+				kauppa = true;
+				orcUpgradeja = 1;
+				heroUpgradeja = 1;
             }
 
             //kommentti
