@@ -42,7 +42,7 @@ and open the template in the editor.
 			var orcNopeus = 10;
             var ammuttu = 0;
             var aika_loopin_lopussa = (new Date()).getTime();
-            var ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1};
+            var ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1, vari: "gold"};
             var mousePos;
 			var orcHP = 100;
 			var heroHP = 50;
@@ -51,11 +51,23 @@ and open the template in the editor.
 			var valintoja = 0;
 			var heroDMG = 6;
 			var armor = 1;
+			var heronCC = 30;
+			var orcUpgradeja = 1;
+			var heroUpgradeja = 1;
+			var ansa = {x: 400, y: 400};
+			var peli = 0;
+			var HeroAbility
+			var OrcAbility
+
 
 			var ansat = [];
 			var ansa = {x: 300, y: 300};
 			
+<<<<<<< HEAD
+			
+=======
 		
+>>>>>>> origin/Menu
 			ansat.push(ansa);
 			ansa = {x: 300, y: 300};
 			ansat.push(ansa);
@@ -74,10 +86,12 @@ and open the template in the editor.
 			ansa = {x: 300, y: 300};
 			ansat.push(ansa);			
 
+
 			var orcUpgradeja = 1;
 			var heroUpgradeja = 1;
 			var ansa = {x: 400, y: 400};
 			var peli = 0;
+
 
 
 			
@@ -278,7 +292,7 @@ and open the template in the editor.
             function piirraAmmus(x, y) {
                 ctx.beginPath();
                 ctx.arc(x, y, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = 'gold';
+                ctx.fillStyle = ammus.vari;
                 ctx.fill();
                 ctx.stroke();
                 //nuoli_x = nuoli_x+1;
@@ -536,7 +550,7 @@ and open the template in the editor.
 			heroUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
-			
+			heronCC = 50;
 			console.log("moi4");
 			valintoja++;
 			}
@@ -557,9 +571,11 @@ and open the template in the editor.
 			heroUpgradeja--;
 			//tapahtuu jotain
 			//kauppa = false;
-			valintoja++;
-			console.log("moi6");
+			ammus.nopeus = 2;
+			ammus.vari = 'red';
 			
+			console.log("moi6");
+			valintoja++;
 			
 			//600, 300, 150,100
 			
@@ -702,7 +718,7 @@ and open the template in the editor.
                     console.log("osuma");
 					ammus.ammuttu = false;
 					orcHP=orcHP-heroDMG*armor;
-					if(kritti(30)){
+					if(kritti(heronCC)){
 					console.log("osuma_krit")
 					krit = true;
 					orcHP=orcHP-14*armor;
@@ -782,10 +798,13 @@ for(var i=0;i<ansat.length;i++){
                 ylos2 = 0;
                 alas2 = 0;
                 ammuttu = 0;
-                ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,heroNopeus:1};
+                ammus = {x: hero_x, y: hero_y,suunta:0,ammuttu:false,nopeus:1, vari: "gold"};
 				heroHP = 50;
 				orcHP = 100;
 				krit = false
+				kauppa = true;
+				orcUpgradeja = 1;
+				heroUpgradeja = 1;
             }
 
             //kommentti
